@@ -72,7 +72,7 @@ body{
       box-shadow:0 10px 20px rgba(0,0,0,.12);
     }
 
-    .yes!!{
+    .yes{
       background:#ff4d8d;
       color:white;
     }
@@ -121,15 +121,28 @@ body{
   const success = document.getElementById("success");
   const buttons = document.getElementById("buttons");
 
-  noBtn.addEventListener("mouseenter", move);
+  noBtn.addEventListener("mouseover", move);
   noBtn.addEventListener("click", move);
 
-  function move(){
-  
-  noBtn.style.position = "fixed";
-    noBtn.style.left = Math.random() * (window.innerWidth - 120) + "px";
-    noBtn.style.top = Math.random() * (window.innerHeight - 60) + "px";
-}
+  function move() {
+    // Make it float above everything
+    noBtn.style.position = "fixed";
+    noBtn.style.zIndex = "1000";
+    noBtn.style.transition = "all 0.2s ease";
+
+    // Get window and button dimensions
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const btnWidth = noBtn.offsetWidth;
+    const btnHeight = noBtn.offsetHeight;
+
+    // Calculate random position while keeping it fully on screen
+    const x = Math.max(10, Math.floor(Math.random() * (vw - btnWidth - 20)));
+    const y = Math.max(10, Math.floor(Math.random() * (vh - btnHeight - 20)));
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }
 
   yesBtn.addEventListener("click", () => {
     buttons.style.display = "none";
