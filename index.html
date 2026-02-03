@@ -10,7 +10,7 @@
   margin:0;
   padding:0;
   height:100%;
-  overflow-x:hidden;
+  overflow:hidden;
     }
 body{
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -125,16 +125,16 @@ body{
   noBtn.addEventListener("click", move);
 
   function move(){
-    noBtn.style.position = "fixed";
+  noBtn.style.position = "fixed";
   noBtn.style.transition = "0.15s";
 
-  const padding = 20; // keeps it away from edges
+  const padding = 20;
 
-  const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-  const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+  const maxX = Math.max(padding, window.innerWidth - noBtn.offsetWidth - padding);
+  const maxY = Math.max(padding, window.innerHeight - noBtn.offsetHeight - padding);
 
-  const x = Math.random() * maxX;
-  const y = Math.random() * maxY;
+  const x = padding + Math.random() * (maxX - padding);
+  const y = padding + Math.random() * (maxY - padding);
 
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
