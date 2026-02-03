@@ -105,7 +105,7 @@ body{
     (I dare you)😏</p>
 
   <div class="buttons" id="buttons">
-    <button class="yes" id="yes">Yes!💖</button>
+    <button class="yes" id="yes">Yes💖</button>
     <button class="no" id="no">No 🙃</button>
   </div>
 
@@ -125,19 +125,20 @@ body{
   noBtn.addEventListener("click", move);
 
   function move(){
+  
   noBtn.style.position = "fixed";
-  noBtn.style.transition = "0.15s";
+  noBtn.style.transition = "left .18s ease, top .18s ease";
 
-  const padding = 30;
+  const rect = noBtn.getBoundingClientRect();
 
-  const buttonWidth = noBtn.getBoundingClientRect().width;
-  const buttonHeight = noBtn.getBoundingClientRect().height;
+  const vw = document.documentElement.clientWidth;
+  const vh = document.documentElement.clientHeight;
 
-  const maxX = window.innerWidth - buttonWidth - padding;
-  const maxY = window.innerHeight - buttonHeight - padding;
+  const maxX = vw - rect.width;
+  const maxY = vh - rect.height;
 
-  const x = padding + Math.random() * (maxX - padding);
-  const y = padding + Math.random() * (maxY - padding);
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
 
   noBtn.style.left = `${x}px`;
   noBtn.style.top = `${y}px`;
